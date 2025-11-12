@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espace Client</title>
     <style>
+
+        
+
         * {
             margin: 0;
             padding: 0;
@@ -97,6 +100,131 @@
         .btn-action:hover {
             background: #5a6fd8;
         }
+
+                /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .logo span {
+            color: #764ba2;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            background: #f8f9fa;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: #667eea;
+            border-color: #667eea;
+        }
+
+        .btn-login:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-register {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-register:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+                /* Footer */
+        .footer {
+           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ffffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00BFFF;
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
         
         /* Couleurs spécifiques pour chaque action */
         .historique { border-left: 4px solid #4CAF50; }
@@ -109,6 +237,25 @@
     </style>
 </head>
 <body>
+
+        <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Urban<span>Drive</span></div>
+        
+        <ul class="nav-links">
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/tarifs">Tarifs</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+        
+        <div class="auth-buttons">
+            <a href="/connexion" class="btn btn-login">Connexion</a>
+            <a href="/inscription" class="btn btn-register">Inscription</a>
+        </div>
+        
+        <div class="mobile-menu">☰</div>
+    </nav>
+
     <div class="client-container">
         <!-- En-tête du client -->
         <div class="client-header">
@@ -149,6 +296,18 @@
             </div>
         </div>
     </div>
+
+        <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#confidentialite">Confidentialité</a>
+            <a href="#cgu">CGU</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="copyright">
+            © 2024 UrbanDrive. Tous droits réservés. VTC agréé par l'État.
+        </div>
+    </footer>
 
     <script>
         // Animation simple au chargement

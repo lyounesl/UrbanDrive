@@ -276,7 +276,7 @@
         }
         
         .footer {
-            background: #ffffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 3rem 2rem;
             text-align: center;
             margin-top: 4rem;
@@ -292,7 +292,7 @@
         }
         
         .footer-links a {
-            color: #000000ff;
+            color: #ffffffff;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -349,7 +349,6 @@
         
         <ul class="nav-links">
             <li><a href="/">Accueil</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="/tarifs">Tarifs</a></li>
             <li><a href="/contact">Contact</a></li>
         </ul>
@@ -421,8 +420,6 @@
             <a href="#confidentialite">Confidentialité</a>
             <a href="#cgu">CGU</a>
             <a href="/contact">Contact</a>
-            <a href="#carrieres">Carrières</a>
-            <a href="#presse">Presse</a>
         </div>
         <div class="copyright">
             © 2024 UrbanDrive. Tous droits réservés. VTC agréé par l'État.
