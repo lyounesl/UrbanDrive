@@ -318,8 +318,8 @@
             <h1>Réservations en Cours</h1>
             <div class="client-info">Client #{{ $num }}</div>
             <div class="header-actions">
-                <a href="/clients/{{ $num }}" class="btn btn-primary">← Retour à l'espace client</a>
-                <a href="/clients/{{ $num }}/nouvelle-reservation" class="btn btn-secondary">➕ Nouvelle réservation</a>
+                <a href="/client/{{ $num }}" class="btn btn-primary">← Retour à l'espace client</a>
+                <a href="/client/{{ $num }}/nouvelle-reservation" class="btn btn-secondary">➕ Nouvelle réservation</a>
             </div>
         </div>
         

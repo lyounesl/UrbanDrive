@@ -20,43 +20,44 @@ Route::get('/tarifs', function () {
     return view('tarifs');
 });
 
-Route::get('/inscription', [InscrireController::class , 'inscription']);
+Route::get('/inscription', [InscrireController::class , 'vueinscription']) -> name('vue.inscription');
 
-Route::get('/inscriptionChauffeur', [InscrireController::class , 'inscriptionChauffeur']);
+Route::post('/inscription', [InscrireController::class , 'inscription']) -> name('inscription.faite');
 
 Route::get('/connexion', [ConnexionController::class , 'connexion']);
 
-Route::get('/clients/{num}', [ClientController::class, 'consulter'])
--> where ( 'num' , '[1-9][0-9]*' ) ;
+Route::get('/client/{num}', [ClientController::class, 'consulter'])
+-> where ( 'num' , '[1-9][0-9]*' )
+-> name ('client.co');
 
-Route::get('/clients/{num}/historique', [ClientController::class, 'historique'])
+Route::get('/client/{num}/historique', [ClientController::class, 'historique'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/clients/{num}/reservation',[ClientController::class, 'reservation'])
+Route::get('/client/{num}/reservation',[ClientController::class, 'reservation'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/clients/{num}/annulerCourse', [AnnulerCourseController::class, 'annulerCourse'])
+Route::get('/client/{num}/annulerCourse', [AnnulerCourseController::class, 'annulerCourse'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/clients/{num}/avisSurChauffeur', [ClientController::class, 'avis'])
+Route::get('/client/{num}/avisSurChauffeur', [ClientController::class, 'avis'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/chauffeurs/{num}', [ChauffeurController::class, 'chauffeur'])
+Route::get('/chauffeur/{num}', [ChauffeurController::class, 'chauffeur'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/chauffeurs/{num}/consulterDemandes', [ConsulterDemandesController::class, 'consulterDemandes'])
+Route::get('/chauffeur/{num}/consulterDemandes', [ConsulterDemandesController::class, 'consulterDemandes'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/chauffeurs/{num}/accepterCourse', [AccepterCourseController::class, 'accepterCourse'])
+Route::get('/chauffeur/{num}/accepterCourse', [AccepterCourseController::class, 'accepterCourse'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/chauffeurs/{num}/refuserCourse', [RefuserCourseController::class, 'refuserCourse'])
+Route::get('/chauffeur/{num}/refuserCourse', [RefuserCourseController::class, 'refuserCourse'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/chauffeurs/{num}/statue', [StatueController::class, 'statue'])
+Route::get('/chauffeur/{num}/statue', [StatueController::class, 'statue'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
-Route::get('/chauffeurs/{num}/avisSurClients', [AvisSurClientsController::class, 'avisSurClients'])
+Route::get('/chauffeur/{num}/avisSurClients', [AvisSurClientsController::class, 'avisSurClients'])
 -> where ( 'num' , '[1-9][0-9]*' );
 
 Route::get('/superviseur/{num}', [SuperviseurController::class, 'superviseur'])

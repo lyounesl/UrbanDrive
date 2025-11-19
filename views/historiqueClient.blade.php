@@ -225,7 +225,7 @@
         <div class="historique-header">
             <h1>Historique des Trajets</h1>
             <div class="client-info">Client #{{ $num }}</div>
-            <a href="/clients/{{ $num }}" class="back-button">← Retour à l'espace client</a>
+            <a href="/client/{{ $num }}" class="back-button">← Retour à l'espace client</a>
         </div>
         
         <!-- Contenu -->

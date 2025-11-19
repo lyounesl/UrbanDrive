@@ -242,7 +242,7 @@
         @endif
 
         <!-- Formulaire de connexion Client -->
-        <form method="POST" action="/login" id="client-form">
+        <form method="POST" action="/connexion" id="client-form">
             @csrf
             <input type="hidden" name="user_type" value="client">
 

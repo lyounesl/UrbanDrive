@@ -372,8 +372,8 @@
             <h1>Avis sur les Chauffeurs</h1>
             <div class="client-info">Client #{{ $num }}</div>
             <div class="header-actions">
-                <a href="/clients/{{ $num }}" class="btn btn-primary">← Retour à l'espace client</a>
-                <a href="/clients/{{ $num }}/nouvel-avis" class="btn btn-secondary">✏️ Donner un avis</a>
+                <a href="/client/{{ $num }}" class="btn btn-primary">← Retour à l'espace client</a>
+                <a href="/client/{{ $num }}/nouvel-avis" class="btn btn-secondary">✏️ Donner un avis</a>
             </div>
         </div>
         

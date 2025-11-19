@@ -231,14 +231,22 @@
         @endif
 
         <!-- Formulaire d'inscription Client -->
-        <form method="POST" action="/register" id="client-form">
+        <form method="POST" action="{{ route('inscription.faite') }}" id="client-form">
             @csrf
             <input type="hidden" name="user_type" value="client">
 
             <div class="form-group">
-                <label class="form-label" for="name">Nom complet</label>
-                <input type="text" id="name" name="name" class="form-input" value="{{ old('name') }}" required autofocus>
-                @error('name')
+                <label class="form-label" for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" class="form-input" value="{{ old('nom') }}" required autofocus>
+                @error('nom')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="prenom">Prenom</label>
+                <input type="text" id="prenom" name="prenom" class="form-input" value="{{ old('prenom') }}" required autofocus>
+                @error('prenom')
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>

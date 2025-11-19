@@ -13,7 +13,7 @@
         
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #ffffffff;
             color: #333;
             min-height: 100vh;
         }
@@ -54,7 +54,7 @@
         
         .nav-links a:hover {
             color: #667eea;
-            background: #f8f9fa;
+            background: #ffffffff;
         }
         
         .auth-buttons {
@@ -161,7 +161,7 @@
         
         .feature-card {
             background: white;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #ffffffff;
             border-radius: 10px;
             padding: 2rem;
             text-align: center;
@@ -243,8 +243,8 @@
         }
         
         .app-btn {
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
+            background: #ffffffff;
+            border: 2px solid #ffffffff;
             border-radius: 10px;
             padding: 1rem 2rem;
             display: flex;

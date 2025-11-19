@@ -266,33 +266,33 @@
         <!-- Grille des actions -->
         <div class="actions-grid">
             <!-- Historique -->
-            <div class="action-card historique" onclick="window.location.href='/clients/{{$num}}/historique'">
+            <div class="action-card historique" onclick="window.location.href='/client/{{$num}}/historique'">
                 <div class="action-icon">📊</div>
                 <div class="action-title">Historique</div>
                 <div class="action-description">
                     Consultez l'historique complet de vos trajets, factures et réservations passées.
                 </div>
-                <a href="/clients/{{$num}}/historique" class="btn-action">Voir l'historique</a>
+                <a href="/client/{{$num}}/historique" class="btn-action">Voir l'historique</a>
             </div>
             
             <!-- Réservation -->
-            <div class="action-card reservation" onclick="window.location.href='/clients/{{$num}}/reservation'">
+            <div class="action-card reservation" onclick="window.location.href='/client/{{$num}}/reservation'">
                 <div class="action-icon">🚗</div>
                 <div class="action-title">Réservation</div>
                 <div class="action-description">
                     Réservez un nouveau trajet avec nos chauffeurs professionnels disponibles 24h/24.
                 </div>
-                <a href="/clients/{{$num}}/reservation" class="btn-action">Nouvelle réservation</a>
+                <a href="/client/{{$num}}/reservation" class="btn-action">Nouvelle réservation</a>
             </div>
             
             <!-- Avis sur les chauffeurs -->
-            <div class="action-card avis" onclick="window.location.href='/clients/{{$num}}/avisSurChauffeur'">
+            <div class="action-card avis" onclick="window.location.href='/client/{{$num}}/avisSurChauffeur'">
                 <div class="action-icon">⭐</div>
                 <div class="action-title">Avis Chauffeurs</div>
                 <div class="action-description">
                     Donnez votre avis sur les chauffeurs et consultez les notes de vos trajets récents.
                 </div>
-                <a href="/clients/{{$num}}/avisSurChauffeur" class="btn-action">Donner un avis</a>
+                <a href="/client/{{$num}}/avisSurChauffeur" class="btn-action">Donner un avis</a>
             </div>
         </div>
     </div>
