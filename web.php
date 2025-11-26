@@ -20,11 +20,12 @@ Route::get('/tarifs', function () {
     return view('tarifs');
 });
 
-Route::get('/inscription', [InscrireController::class , 'vueinscription']) -> name('vue.inscription');
-
+Route::get('/inscription', [InscrireController::class , 'vueInscription']) -> name('vue.inscription');
 Route::post('/inscription', [InscrireController::class , 'inscription']) -> name('inscription.faite');
 
-Route::get('/connexion', [ConnexionController::class , 'connexion']);
+Route::get('/connexion', [ConnexionController::class , 'vueConnexion']);
+Route::post('/connexion', [ConnexionController::class , 'connexion']) -> name('connexionFaite');
+Route::post('/deconnexion', [LoginController::class, 'logout']) -> name('logout');
 
 Route::get('/client/{num}', [ClientController::class, 'consulter'])
 -> where ( 'num' , '[1-9][0-9]*' )
