@@ -222,50 +222,78 @@
         </div>
 
         <!-- Affichage des erreurs -->
-        @if($errors->any())
+        <?php if($errors->any()): ?>
             <div class="alert">
-                @foreach($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <p><?php echo e($error); ?></p>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
-        @endif
+        <?php endif; ?>
 
         <!-- Formulaire d'inscription Client -->
-        <form method="POST" action="{{ route('inscription.faite') }}" id="client-form">
-            @csrf
+        <form method="POST" action="<?php echo e(route('inscription.faite')); ?>" id="client-form">
+            <?php echo csrf_field(); ?>
             <input type="hidden" name="user_type" value="client">
 
             <div class="form-group">
                 <label class="form-label" for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" class="form-input" value="{{ old('nom') }}" required autofocus>
-                @error('nom')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <input type="text" id="nom" name="nom" class="form-input" value="<?php echo e(old('nom')); ?>" required autofocus>
+                <?php $__errorArgs = ['nom'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="prenom">Prenom</label>
-                <input type="text" id="prenom" name="prenom" class="form-input" value="{{ old('prenom') }}" required autofocus>
-                @error('prenom')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <input type="text" id="prenom" name="prenom" class="form-input" value="<?php echo e(old('prenom')); ?>" required autofocus>
+                <?php $__errorArgs = ['prenom'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="email">Adresse Email</label>
-                <input type="email" id="email" name="email" class="form-input" value="{{ old('email') }}" required>
-                @error('email')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <input type="email" id="email" name="email" class="form-input" value="<?php echo e(old('email')); ?>" required>
+                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label" for="password">Mot de passe</label>
                     <input type="password" id="password" name="password" class="form-input" required>
-                    @error('password')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+                    <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <div class="error"><?php echo e($message); ?></div>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="form-group">
@@ -279,7 +307,7 @@
 
         <!-- Formulaire d'inscription Chauffeur (caché par défaut) -->
         <form method="POST" action="/chauffeur/register" id="chauffeur-form" style="display: none;">
-            @csrf
+            <?php echo csrf_field(); ?>
             <input type="hidden" name="user_type" value="chauffeur">
 
             <div class="chauffeur-info">
@@ -290,44 +318,79 @@
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label" for="chauffeur_nom">Nom</label>
-                    <input type="text" id="chauffeur_nom" name="nom" class="form-input" value="{{ old('nom') }}" required>
-                    @error('chauffeur_nom')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+                    <input type="text" id="chauffeur_nom" name="nom" class="form-input" value="<?php echo e(old('nom')); ?>" required>
+                    <?php $__errorArgs = ['chauffeur_nom'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <div class="error"><?php echo e($message); ?></div>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="chauffeur_prenom">Prénom</label>
-                    <input type="text" id="chauffeur_prenom" name="prenom" class="form-input" value="{{ old('prenom') }}" required>
-                    @error('chauffeur_prenom')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+                    <input type="text" id="chauffeur_prenom" name="prenom" class="form-input" value="<?php echo e(old('prenom')); ?>" required>
+                    <?php $__errorArgs = ['chauffeur_prenom'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <div class="error"><?php echo e($message); ?></div>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="chauffeur_email">Email professionnel</label>
-                <input type="email" id="chauffeur_email" name="email" class="form-input" value="{{ old('email') }}" required>
-                @error('chauffeur_email')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <input type="email" id="chauffeur_email" name="email" class="form-input" value="<?php echo e(old('email')); ?>" required>
+                <?php $__errorArgs = ['chauffeur_email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="chauffeur_telephone">Téléphone</label>
-                <input type="tel" id="chauffeur_telephone" name="telephone" class="form-input" value="{{ old('telephone') }}" required>
-                @error('chauffeur_telephone')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <input type="tel" id="chauffeur_telephone" name="telephone" class="form-input" value="<?php echo e(old('telephone')); ?>" required>
+                <?php $__errorArgs = ['chauffeur_telephone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label" for="chauffeur_password">Mot de passe</label>
                     <input type="password" id="chauffeur_password" name="password" class="form-input" required>
-                    @error('chauffeur_password')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+                    <?php $__errorArgs = ['chauffeur_password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <div class="error"><?php echo e($message); ?></div>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="form-group">
@@ -383,4 +446,4 @@
         });
     </script>
 </body>
-</html>
+</html><?php /**PATH /home/ahmed/UrbanDrive/resources/views/inscription.blade.php ENDPATH**/ ?>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - UrbanDrive</title>
+    <title>Connexion - UrbanDrive</title>
     <style>
         * {
             margin: 0;
@@ -21,27 +21,27 @@
             padding: 20px;
         }
         
-        .register-container {
+        .login-container {
             background: white;
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
         }
         
-        .register-header {
+        .login-header {
             text-align: center;
             margin-bottom: 2rem;
         }
         
-        .register-header h2 {
+        .login-header h2 {
             color: #333;
             margin-bottom: 0.5rem;
             font-size: 1.8rem;
         }
         
-        .register-header p {
+        .login-header p {
             color: #666;
         }
         
@@ -105,7 +105,30 @@
             border-color: #667eea;
         }
         
-        .btn-register {
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .forgot-password {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .btn-login {
             width: 100%;
             padding: 1rem;
             background: #667eea;
@@ -119,7 +142,7 @@
             margin-bottom: 1.5rem;
         }
         
-        .btn-register:hover {
+        .btn-login:hover {
             background: #5a6fd8;
             transform: translateY(-2px);
         }
@@ -146,18 +169,18 @@
             padding: 0 1rem;
         }
         
-        .login-link {
+        .register-link {
             text-align: center;
             margin-top: 1.5rem;
         }
         
-        .login-link a {
+        .register-link a {
             color: #667eea;
             text-decoration: none;
             font-weight: bold;
         }
         
-        .login-link a:hover {
+        .register-link a:hover {
             text-decoration: underline;
         }
         
@@ -176,37 +199,18 @@
             border: 1px solid #f5c6cb;
         }
         
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .chauffeur-info {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            border-left: 4px solid #667eea;
-        }
-        
-        .chauffeur-info h4 {
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        
-        .chauffeur-info p {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.4;
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
         }
     </style>
 </head>
 <body>
-    <div class="register-container">
-        <div class="register-header">
-            <h2>Inscription</h2>
-            <p>Rejoignez la communauté UrbanDrive</p>
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Connexion</h2>
+            <p>Accédez à votre espace personnel</p>
         </div>
 
         <!-- Boutons de sélection du type d'utilisateur -->
@@ -222,129 +226,121 @@
         </div>
 
         <!-- Affichage des erreurs -->
-        @if($errors->any())
+        <?php if($errors->any()): ?>
             <div class="alert">
-                @foreach($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <p><?php echo e($error); ?></p>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
-        @endif
+        <?php endif; ?>
 
-        <!-- Formulaire d'inscription Client -->
-        <form method="POST" action="{{ route('inscription.faite') }}" id="client-form">
-            @csrf
+        <!-- Message de succès -->
+        <?php if(session('success')): ?>
+            <div class="alert alert-success">
+                <?php echo e(session('success')); ?>
+
+            </div>
+        <?php endif; ?>
+
+        <!-- Formulaire de connexion Client -->
+        <form method="POST" action="/connexion" id="client-form">
+            <?php echo csrf_field(); ?>
             <input type="hidden" name="user_type" value="client">
 
             <div class="form-group">
-                <label class="form-label" for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" class="form-input" value="{{ old('nom') }}" required autofocus>
-                @error('nom')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="prenom">Prenom</label>
-                <input type="text" id="prenom" name="prenom" class="form-input" value="{{ old('prenom') }}" required autofocus>
-                @error('prenom')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
                 <label class="form-label" for="email">Adresse Email</label>
-                <input type="email" id="email" name="email" class="form-input" value="{{ old('email') }}" required>
-                @error('email')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <input type="email" id="email" name="email" class="form-input" value="<?php echo e(old('email')); ?>" required autofocus>
+                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" class="form-input" required>
-                    @error('password')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="password_confirmation">Confirmer le mot de passe</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-input" required>
-                </div>
+            <div class="form-group">
+                <label class="form-label" for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" class="form-input" required>
+                <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
-            <button type="submit" class="btn-register">Créer mon compte</button>
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Se souvenir de moi</label>
+                </div>
+                <a href="/forgot-password" class="forgot-password">Mot de passe oublié ?</a>
+            </div>
+
+            <button type="submit" class="btn-login">Se connecter</button>
         </form>
 
-        <!-- Formulaire d'inscription Chauffeur (caché par défaut) -->
-        <form method="POST" action="/chauffeur/register" id="chauffeur-form" style="display: none;">
-            @csrf
+        <!-- Formulaire de connexion Chauffeur (caché par défaut) -->
+        <form method="POST" action="/chauffeur/login" id="chauffeur-form" style="display: none;">
+            <?php echo csrf_field(); ?>
             <input type="hidden" name="user_type" value="chauffeur">
-
-            <div class="chauffeur-info">
-                <h4>🎯 Devenir chauffeur UrbanDrive</h4>
-                <p>Rejoignez notre réseau de chauffeurs professionnels et bénéficiez de nombreux avantages.</p>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="chauffeur_nom">Nom</label>
-                    <input type="text" id="chauffeur_nom" name="nom" class="form-input" value="{{ old('nom') }}" required>
-                    @error('chauffeur_nom')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="chauffeur_prenom">Prénom</label>
-                    <input type="text" id="chauffeur_prenom" name="prenom" class="form-input" value="{{ old('prenom') }}" required>
-                    @error('chauffeur_prenom')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
 
             <div class="form-group">
                 <label class="form-label" for="chauffeur_email">Email professionnel</label>
-                <input type="email" id="chauffeur_email" name="email" class="form-input" value="{{ old('email') }}" required>
-                @error('chauffeur_email')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <input type="email" id="chauffeur_email" name="email" class="form-input" value="<?php echo e(old('email')); ?>" required>
+                <?php $__errorArgs = ['chauffeur_email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="chauffeur_telephone">Téléphone</label>
-                <input type="tel" id="chauffeur_telephone" name="telephone" class="form-input" value="{{ old('telephone') }}" required>
-                @error('chauffeur_telephone')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <label class="form-label" for="chauffeur_password">Mot de passe</label>
+                <input type="password" id="chauffeur_password" name="password" class="form-input" required>
+                <?php $__errorArgs = ['chauffeur_password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="chauffeur_password">Mot de passe</label>
-                    <input type="password" id="chauffeur_password" name="password" class="form-input" required>
-                    @error('chauffeur_password')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" name="remember" id="chauffeur_remember">
+                    <label for="chauffeur_remember">Se souvenir de moi</label>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="chauffeur_password_confirmation">Confirmer le mot de passe</label>
-                    <input type="password" id="chauffeur_password_confirmation" name="password_confirmation" class="form-input" required>
-                </div>
+                <a href="/chauffeur/forgot-password" class="forgot-password">Mot de passe oublié ?</a>
             </div>
 
-            <button type="submit" class="btn-register">Devenir chauffeur</button>
+            <button type="submit" class="btn-login">Connexion Chauffeur</button>
         </form>
 
         <div class="separator">
-            <span>Déjà un compte ?</span>
+            <span>ou</span>
         </div>
 
-        <div class="connexion-link">
-            <p><a href="/connexion">Se connecter</a></p>
+        <div class="inscription-link">
+            <p>Pas encore de compte ? <a href="/inscription">Créer un compte</a></p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
         </div>
     </div>
 
@@ -371,7 +367,7 @@
             });
 
             // Animation au chargement
-            const container = document.querySelector('.register-container');
+            const container = document.querySelector('.login-container');
             container.style.opacity = '0';
             container.style.transform = 'translateY(20px)';
             
@@ -383,4 +379,4 @@
         });
     </script>
 </body>
-</html>
+</html><?php /**PATH /home/ahmed/UrbanDrive/resources/views/connexion.blade.php ENDPATH**/ ?>
